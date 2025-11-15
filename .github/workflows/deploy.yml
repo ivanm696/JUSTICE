@@ -1,0 +1,62 @@
+# .github/workflows/deploy.yml
+
+name: Bot CI/CD Workflow
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build_and_test:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout Code 🛎️
+        uses: actions/checkout@v4
+      
+      - name: Set up Python 🐍
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.x'
+
+      - name: Install dependencies 📦
+        run: |
+          python -m pip install --upgrade pip
+          if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+          
+      - name: Run Bot Tests 🧪
+        env:
+          # Установим переменные окружения для тестирования
+          TEST_MODE: True 
+          CI_TEST: True
+        run: |
+          echo "Запуск тестов бота..."
+          python bot.py
+          
+  deploy:
+    # Запускается только после успешного завершения 'build_and_test'
+    needs: build_and_test 
+    runs-on: ubuntu-latest
+    environment: Production
+    
+    steps:
+      - name: Checkout Code 🛎️
+        uses: actions/checkout@v4
+
+      - name: Deploy Bot 🚀
+        # В этом шаге вы должны добавить реальную логику развертывания.
+        # Это может быть SSH-подключение к серверу, развертывание в Docker или на облачной платформе.
+        run: |
+          echo "Начало развертывания..."
+          # Пример команды для удаленного запуска или обновления:
+          # ssh user@your_server.com 'cd /path/to/bot && git pull && docker-compose up -d'
+          
+          # Если вы используете секретный токен бота, вы можете получить его так:
+          echo "Секретный токен доступен как переменная окружения"
+          echo "Токен: ${{ secrets.BOT_TOKEN }}"
+          
+          echo "Развертывание завершено."
