@@ -1,0 +1,13 @@
+.
+├─ src/                 # Исходный код
+│   ├─ assets/          # Изображения / шрифты
+│   ├─ components/      # Повторно используемые React‑компоненты
+│   ├─ layouts/         # Макеты страниц
+│   ├─ pages/           # Компоненты маршрутов
+│   ├─ posts/           # MDX‑посты
+│   └─ App.jsx          # Корневой компонент
+├─ public/              # Статические файлы для сборки
+├─ tailwind.config.js   # Конфиг Tailwind
+├─ postcss.config.js    # Конфиг PostCSS
+├─ vite.config.ts       # Конфиг Vite + PWA‑плагин
+└─ README.md
