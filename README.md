@@ -19,3 +19,14 @@ Node.js + Express сервер, который реализует API для п�
 
 ## Структура
 server/ ├─ src/ │ ├─ config/ │ ├─ controllers/ │ ├─ middleware/ │ ├─ models/ │ ├─ routes/ │ ├─ services/ │ ├─ utils/ │ ├─ validators/ │ ├─ index.js │ └─ app.js ├─ test/ ├─ .env.example ├─ package.json └─ README.md
+
+## Установка и запуск
+
+```bash
+git clone https://github.com/ivanm696/justice.git
+cd justice/server
+cp .env.example .env
+# заполните .env
+npm install
+npm run dev    # для разработки
+npm start      # для продакшна
