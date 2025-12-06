@@ -1,0 +1,31 @@
+yaml
+version: '3.8'
+
+services:
+  backend:
+    build: ./backend # Собирает образ из папки backend, где лежит Dockerfile
+    container_name: my_app_backend
+    ports:
+      - "8000:8000" # Проброс порта 8000
+    depends_on:
+      - db # Зависит от сервиса db (базы данных)
+    environment:
+      # Переменные окружения для подключения приложения к БД
+      DATABASE_URL: postgresql://user:password@db/mydatabase
+
+  db:
+    image: postgres:13-alpine # Используем образ PostgreSQL
+    container_name: postgres_db
+    volumes:
+      # Сохраняем данные БД в именованный volume, чтобы они не потерялись при удалении контейнера
+      - postgres_data:/var/lib/postgresql/data/
+    environment:
+      # Переменные окружения для настройки самой БД
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: mydatabase
+    restart: unless-stopped
+
+# Определение именованных volume внизу файла
+volumes:
+  postgres_data:
