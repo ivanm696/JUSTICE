@@ -10,7 +10,7 @@ Run locally:
 2. npm install
 3. npm start
 ```
-# justice – серверная часть
+# JUSTICE – серверная часть
 
 ## Что это?
 
