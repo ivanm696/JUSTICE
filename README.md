@@ -1,12 +1,12 @@
 # JUSTICE
 MD
 ```markdown
-# JUSTICE — server/justice
+# JUSTICE — server/JUSTICE
 
 Minimal Node/Express scaffold.
 
 Run locally:
-1. cd justice
+1. cd JUSTICE
 2. npm install
 3. npm start
 ```
