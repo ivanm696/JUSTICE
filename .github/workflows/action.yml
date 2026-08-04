@@ -1,19 +1,32 @@
-echo -e "[Public]\n   path = /home/justice/PublicShare\n   browsable = yes\n   writable = yes\n   guest ok = yes\n   read only = no" | sudo tee -a /etc/samba/smb.conf
+name: Setup and Build
+description: Generic setup action
+inputs:
+  pnpm-version:
+    required: false
+    type: string
+    default: '9.14.4'
+  node-version:
+    required: false
+    type: string
+    default: '20.18.0'
 
-sudo chmod -R 777 /home/justice/PublicShare
-sudo chown -R nobody:nogroup /home/justice/PublicShare
+runs:
+  using: composite
 
-sudo sed -i '/\[global\]/a \   map to guest = bad user' /etc/samba/smb.conf
+  steps:
+    - uses: pnpm/action-setup@v4
+      with:
+        version: ${{ inputs.pnpm-version }}
+        run_install: false
 
-sudo mkdir -p /srv/samba/public
-sudo chmod -R 777 /srv/samba/public
-sudo chown -R nobody:nogroup /srv/samba/public
+    - name: Set Node.js version to ${{ inputs.node-version }}
+      uses: actions/setup-node@v4
+      with:
+        node-version: ${{ inputs.node-version }}
+        cache: pnpm
 
-[Public]
-   path = /srv/samba/public
-   browsable = yes
-   writable = yes
-   guest ok = yes
-   force user = nobody
-   
-   sudo cp -r /home/justice/Desktop/* /public/ && sudo chmod -R 777 /public
+    - name: Install dependencies and build project
+      shell: bash
+      run: |
+        pnpm install
+        pnpm run build
