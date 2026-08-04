@@ -1,0 +1,69 @@
+🗄 Database Schema
+The application uses three main tables:
+
+profiles: Extended user profiles with publication credits
+publast_sites: Cache of available publication sites from Publast
+publications: Track publication jobs and their status
+🔧 Edge Functions
+analyze-website: Analyzes website content and generates initial understanding
+create-publication: Creates publications and calls Publast API
+publication-status: Fetches real-time publication status
+🎯 User Flow
+Landing: User enters their website URL
+Authentication: Sign up/in (Google Auth gets 1 free credit)
+Analysis: AI analyzes the website content
+Publication: System automatically generates and publishes articles
+Tracking: Real-time status updates on publication progress
+🔐 Authentication
+Google OAuth (provides 1 free publication credit)
+Email/Password authentication
+Row Level Security (RLS) enabled on all tables
+📱 Responsive Design
+The application is fully responsive with breakpoints for:
+
+Mobile: < 768px
+Tablet: 768px - 1024px
+Desktop: > 1024px
+🎨 Design System
+Primary: Indigo (#6366f1)
+Secondary: Teal (#06b6d4)
+Accent: Orange (#f59e0b)
+Typography: Modern, readable fonts with excellent hierarchy
+Components: Clean cards, smooth animations, hover states
+🚀 Deployment
+The application can be deployed to any platform that supports:
+
+Node.js/React applications
+Supabase integration
+Environment variables
+Popular options include:
+
+Netlify
+Vercel
+AWS Amplify
+📝 Environment Variables
+Frontend (Vite)
+VITE_SUPABASE_URL
+VITE_SUPABASE_ANON_KEY
+Backend (Supabase Edge Functions)
+SUPABASE_URL
+SUPABASE_ANON_KEY
+SUPABASE_SERVICE_ROLE_KEY
+PUBLAST_API_KEY
+PUBLAST_BASE_URL
+🤝 Contributing
+This is an open-source project. Contributions are welcome!
+
+Fork the repository
+Create a feature branch
+Make your changes
+Submit a pull request
+📄 License
+[Add your chosen license here]
+
+🆘 Support
+For support and questions:
+
+Create an issue in the repository
+Check the documentation
+Review the Publast API guide in the project files
