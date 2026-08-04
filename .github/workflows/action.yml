@@ -1,0 +1,19 @@
+echo -e "[Public]\n   path = /home/justice/PublicShare\n   browsable = yes\n   writable = yes\n   guest ok = yes\n   read only = no" | sudo tee -a /etc/samba/smb.conf
+
+sudo chmod -R 777 /home/justice/PublicShare
+sudo chown -R nobody:nogroup /home/justice/PublicShare
+
+sudo sed -i '/\[global\]/a \   map to guest = bad user' /etc/samba/smb.conf
+
+sudo mkdir -p /srv/samba/public
+sudo chmod -R 777 /srv/samba/public
+sudo chown -R nobody:nogroup /srv/samba/public
+
+[Public]
+   path = /srv/samba/public
+   browsable = yes
+   writable = yes
+   guest ok = yes
+   force user = nobody
+   
+   sudo cp -r /home/justice/Desktop/* /public/ && sudo chmod -R 777 /public
