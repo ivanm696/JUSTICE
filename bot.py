@@ -1,8 +1,4 @@
-# Правильная ссылка на CI/CD badge
-[![Bot CI/CD Workflow](https://github.com/ivanm696/JUSTICE/actions/workflows/deploy.yml/badge.svg)](https://github.com/ivanm696/JUSTICE/actions/workflows/deploy.yml)
-
-import asyncio
-import json
+# json
 import math
 import os
 import re
